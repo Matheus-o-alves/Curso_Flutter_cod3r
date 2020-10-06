@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
+import './questao.dart';
+import './resposta.dart';
 
 main() => runApp(Quiz());
 
-class QuizState extends State<Quiz> {
-  var perguntaSelect = 0;
-  void responder() {
+class _QuizState extends State<Quiz> {
+  var _perguntaSelect = 0;
+  void _responder() {
     setState(() {
-      perguntaSelect++;
+      _perguntaSelect++;
     });
-    print(perguntaSelect);
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<String> perguntas = [
-      'Qual sua linguagem de programação preferida ?',
-      'Qual seu framework favorito?',
-      'React Native ou Flutter?',
+    final List<Map<String, Object>> perguntas = [
+      {
+        'texto': 'Qual sua linguagem de programação preferida ?',
+        'respostas': ['Dart', 'C++', 'JavaScript', 'Python']
+      },
+      {
+        'texto': 'Qual seu framework favorito?',
+        'respostas': ['Flutter', 'React Native', 'Xamarin', 'Ionic']
+      },
+      {
+        'texto': 'Qual sua IDE preferida?',
+        'respostas': ['Vscode', 'Vim', 'Android Studio']
+      },
     ];
 
     return MaterialApp(
@@ -27,20 +37,11 @@ class QuizState extends State<Quiz> {
             centerTitle: true,
           ),
           body: Column(
-            children: [
-              Text(perguntas.elementAt(perguntaSelect)),
-              RaisedButton(
-                child: Text('Resposta 1'),
-                onPressed: responder,
-              ),
-              RaisedButton(
-                child: Text('Resposta 2'),
-                onPressed: responder,
-              ),
-              RaisedButton(
-                child: Text('Resposta 3'),
-                onPressed: responder,
-              )
+            children: <Widget>[
+              Questao(perguntas[_perguntaSelect]['texto']),
+              Resposta('resposta 1', _responder),
+              Resposta('resposta 2', _responder),
+              Resposta('resposta 3', _responder),
             ],
           ),
         ));
@@ -48,7 +49,7 @@ class QuizState extends State<Quiz> {
 }
 
 class Quiz extends StatefulWidget {
-  QuizState createState() {
-    return QuizState();
+  _QuizState createState() {
+    return _QuizState();
   }
 }
