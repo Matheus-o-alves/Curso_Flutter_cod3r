@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizApp/result.dart';
 import './questao.dart';
 import './resposta.dart';
 
@@ -44,29 +45,22 @@ class _QuizState extends State<Quiz> {
     // }
 
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text('Quiz'),
-              backgroundColor: Colors.red,
-              centerTitle: true,
-            ),
-            body: perguntaSelectReal
-                ? Column(
-                    children: <Widget>[
-                      Questao(_perguntas[_perguntaSelect]['texto']),
-                      ...respostas.map((t) => Resposta(t, _responder)).toList(),
-                    ],
-                  )
-                : Center(
-                    child: Text(
-                      'Parabéns!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        color: Colors.red,
-                      ),
-                    ),
-                  )));
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Quiz'),
+            backgroundColor: Colors.red,
+            centerTitle: true,
+          ),
+          body: perguntaSelectReal
+              ? Column(
+                  children: <Widget>[
+                    Questao(_perguntas[_perguntaSelect]['texto']),
+                    ...respostas.map((t) => Resposta(t, _responder)).toList(),
+                  ],
+                )
+              : Resultado()),
+    );
   }
 }
 
