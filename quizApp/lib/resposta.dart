@@ -3,9 +3,9 @@ import './main.dart';
 import './questao.dart';
 
 class Resposta extends StatelessWidget {
-  final String resposta;
+  final String texto;
   final void Function() onSelect;
-  Resposta(this.resposta, this.onSelect);
+  Resposta(this.texto, this.onSelect);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class Resposta extends StatelessWidget {
       child: RaisedButton(
         textColor: Colors.white,
         color: Colors.red[400],
-        child: Text(resposta),
+        child: Text(texto),
         onPressed: onSelect,
       ),
     );
